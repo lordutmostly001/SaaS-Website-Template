@@ -1,5 +1,5 @@
 "use client";
-import { Button } from "@heroui/react";
+import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { useTheme } from "next-themes";
 import { MoonIcon, SunIcon } from "@radix-ui/react-icons";
@@ -19,7 +19,7 @@ export default function ThemeSwitcher() {
   };
 
   return (
-    <Button isIconOnly variant="light" onPress={handleClick}>
+    <Button variant="ghost" size="icon" onClick={handleClick}>
       {svg}
     </Button>
   );

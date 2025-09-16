@@ -1,17 +1,11 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
 import "./globals.css";
 import { Providers } from "./providers";
+import NavBar from "@/components/navbar";
+import { Geist } from "next/font/google";
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
+const geist = Geist({
+  subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
@@ -27,16 +21,23 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        {/* 
+          Plausible Analytics integration for website analytics.
+          Replace the data-domain and src attributes with your own Plausible setup,
+          or remove this script entirely if you don't need analytics.
+          Note: The current configuration sends your data to the creator's domain.
+        */}
         <script
           defer
           data-domain="saas.gonzalochale.dev"
           src="https://plausible.gonzalochale.dev/js/script.outbound-links.js"
         ></script>
       </head>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        <Providers>{children}</Providers>
+      <body className={`${geist.className} antialiased`}>
+        <Providers>
+          <NavBar />
+          {children}
+        </Providers>
       </body>
     </html>
   );

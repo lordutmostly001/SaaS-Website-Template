@@ -15,13 +15,13 @@ A Landing page template for SaaS applications.
 
 ## Introduction
 
-This project is a starter template for SaaS applications landing page using Next.js 14, HeroUI, and Tailwind CSS.
+This project is a starter template for SaaS applications landing page using Next.js 15, ShadCN UI, and Tailwind CSS 4.
 
 ## Features
 
-- Next.js 14 with server-side rendering (SSR)
-- HeroUI for beautiful and responsive UI components
-- Tailwind CSS for easy styling and customization
+- Next.js 15
+- ShadCN UI for beautiful and responsive UI components
+- Tailwind CSS 4 for easy styling and customization
 
 ## Getting Started
 

@@ -105,7 +105,7 @@ export default function Testimonials() {
           transition={{ duration: 0.6, ease: "easeOut" }}
           className="text-center mb-20 flex flex-col gap-3"
         >
-          <h2 className="text-xl font-semibold sm:text-2xl bg-gradient-to-b from-foreground to-muted-foreground text-transparent bg-clip-text">
+          <h2 className="text-xl font-semibold sm:text-2xl bg-linear-to-b from-foreground to-muted-foreground text-transparent bg-clip-text">
             Loved by Teams Worldwide
           </h2>
           <p className="mx-auto max-w-xl text-muted-foreground text-center">
@@ -139,7 +139,7 @@ export default function Testimonials() {
                 </p>
 
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 bg-gradient-to-br from-primary/20 to-primary/10 rounded-full flex items-center justify-center text-sm font-medium border border-primary/20">
+                  <div className="w-10 h-10 bg-linear-to-br from-primary/20 to-primary/10 rounded-full flex items-center justify-center text-sm font-medium border border-primary/20">
                     {testimonial.name
                       .split(" ")
                       .map((n) => n[0])

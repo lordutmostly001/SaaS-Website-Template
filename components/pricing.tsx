@@ -1,122 +1,136 @@
 "use client";
-import { Card, CardBody, CardFooter } from "@heroui/card";
-import { Button } from "@heroui/button";
-import { Divider } from "@heroui/divider";
+
+import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
+import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { motion } from "framer-motion";
+import { CheckIcon } from "@radix-ui/react-icons";
 
 export default function Pricing() {
   const plans = [
     {
       name: "Hobby Plan",
-      desc: "Enjoy limited access to all our features",
+      desc: "Perfect for getting started",
       price: 0,
       isMostPop: false,
-      features: ["Make the best schedule", "Support your team"],
-    },
-    {
-      name: "Basic Plan",
-      desc: "Make the best schedule for your team",
-      price: 10,
-      isMostPop: true,
       features: [
         "Make the best schedule",
         "Support your team",
-        "Build your website",
+        "Basic analytics",
+      ],
+    },
+    {
+      name: "Pro Plan",
+      desc: "Best for growing teams",
+      price: 29,
+      isMostPop: true,
+      features: [
+        "Everything in Hobby",
+        "Advanced team features",
+        "Priority support",
         "Video calls",
+        "Custom integrations",
       ],
     },
     {
       name: "Enterprise Plan",
-      desc: "Make the best schedule for your team and more",
-      price: 20,
+      desc: "For large organizations",
+      price: 99,
       isMostPop: false,
       features: [
-        "Make the best schedule",
-        "Support your team",
-        "Build your website",
-        "Video calls",
-        "Audio calls",
+        "Everything in Pro",
+        "Advanced security",
+        "Custom branding",
+        "Dedicated support",
+        "SLA guarantee",
       ],
     },
   ];
 
   return (
-    <motion.section
+    <section
       id="pricing"
-      initial={{ y: 20, opacity: 0 }}
-      whileInView={{
-        y: 0,
-        opacity: 1,
-      }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.5, delay: 0.5, type: "spring", bounce: 0 }}
-      className="max-w-screen-xl w-full mx-auto px-4 py-28 gap-5 md:px-8 flex flex-col justify-center items-center"
+      className="w-full max-w-7xl mx-auto px-4 py-24 md:px-6"
     >
-      <div className="flex flex-col gap-3">
-        <h3 className="text-xl font-semibold sm:text-2xl bg-gradient-to-b from-foreground to-muted-foreground text-transparent bg-clip-text">
-          Pricing Plans for your business
-        </h3>
-        <p className="max-w-xl text-muted-foreground text-center">
-          Select the plan that best suits your needs.
+      <motion.div
+        initial={{ y: 20, opacity: 0 }}
+        whileInView={{ y: 0, opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+        className="text-center mb-16 flex flex-col gap-3"
+      >
+        <h2 className="text-xl font-semibold sm:text-2xl bg-linear-to-b from-foreground to-muted-foreground text-transparent bg-clip-text">
+          Choose Your Plan
+        </h2>
+        <p className="mx-auto max-w-xl text-muted-foreground text-center">
+          Select the perfect plan for your needs. Upgrade or downgrade at any
+          time.
         </p>
-      </div>
-      <div className="mt-16 gap-10 grid lg:grid-cols-3 place-content-center">
-        {plans.map((item, idx) => (
-          <Card
-            key={idx}
-            shadow="none"
-            className={`relative rounded-[20px] p-[3px] will-change-transform ${
-              item.isMostPop ? "sm:scale-110" : ""
-            }`}
+      </motion.div>
+
+      <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        {plans.map((plan, index) => (
+          <motion.div
+            key={plan.name}
+            initial={{ y: 20, opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: index * 0.1 }}
+            className={`relative ${plan.isMostPop ? "scale-105" : ""}`}
           >
-            {item.isMostPop ? (
-              <span className="absolute inset-[-1000%] animate-[spin_6s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#016FEE_70%,#C7DBFB_100%)]" />
-            ) : (
-              <span className="absolute inset-[-1000%] bg-border" />
-            )}
-            <div className="z-[2] flex flex-col justify-between w-full h-full bg-card rounded-[18px] p-5">
-              <CardBody className="w-full flex items-start gap-3">
-                <div className="flex flex-col">
-                  <h4 className="text-xl font-light">{item.name}</h4>
-                  <span className="text-muted-foreground text-sm font-light">
-                    {item.desc}
+            <Card
+              className={`relative h-full ${
+                plan.isMostPop ? "border-2 border-primary shadow-xl" : ""
+              }`}
+            >
+              {plan.isMostPop && (
+                <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                  <span className="bg-card border-2 border-primary px-4 py-1 rounded-full text-sm font-medium">
+                    Most Popular
                   </span>
                 </div>
-                <span className="text-2xl font-light">
-                  {item.price.toLocaleString("en-US", {
-                    style: "currency",
-                    currency: "USD",
-                  })}
-                </span>
+              )}
 
-                <Divider />
-
-                <div className="flex flex-col gap-5 pb-5">
-                  <span className="text-muted-foreground text-sm font-light">
-                    Includes
-                  </span>
-                  <ul className="flex flex-col gap-2">
-                    {item.features.map((feature, index) => (
-                      <li key={index} className="text-sm font-light">
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
+              <CardContent className="p-6 pt-8">
+                <div className="text-center mb-6">
+                  <h3 className="text-xl font-semibold mb-2">{plan.name}</h3>
+                  <p className="text-muted-foreground text-sm mb-4">
+                    {plan.desc}
+                  </p>
+                  <div className="flex items-baseline justify-center">
+                    <span className="text-4xl font-bold">${plan.price}</span>
+                    <span className="text-muted-foreground ml-1">/month</span>
+                  </div>
                 </div>
-              </CardBody>
-              <CardFooter className="p-0">
+
+                <Separator className="my-6" />
+
+                <ul className="space-y-3">
+                  {plan.features.map((feature, featureIndex) => (
+                    <li
+                      key={featureIndex}
+                      className="flex items-center text-sm"
+                    >
+                      <CheckIcon className="h-4 w-4 text-green-500 mr-3 flex-shrink-0" />
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
+              </CardContent>
+
+              <CardFooter className="p-6 pt-0">
                 <Button
                   className="w-full"
-                  variant="solid"
-                  color={item.isMostPop ? "primary" : "default"}
+                  variant={plan.isMostPop ? "default" : "outline"}
+                  size="lg"
                 >
-                  Get Started
+                  {plan.price === 0 ? "Get Started Free" : "Choose Plan"}
                 </Button>
               </CardFooter>
-            </div>
-          </Card>
+            </Card>
+          </motion.div>
         ))}
       </div>
-    </motion.section>
+    </section>
   );
 }
